@@ -1,0 +1,5 @@
+/Users/kszosze/Developer/repos/integration-rabbit/src/main/java/com/example/integrationqueues/config/RabbitConfig.java
+/Users/kszosze/Developer/repos/integration-rabbit/src/main/java/com/example/integrationqueues/IntegrationQueuesApplication.java
+/Users/kszosze/Developer/repos/integration-rabbit/src/main/java/com/example/integrationqueues/config/ConnectionProperties.java
+/Users/kszosze/Developer/repos/integration-rabbit/src/main/java/com/example/integrationqueues/config/QueueProperties.java
+/Users/kszosze/Developer/repos/integration-rabbit/src/main/java/com/example/integrationqueues/listeners/QueueListeners.java

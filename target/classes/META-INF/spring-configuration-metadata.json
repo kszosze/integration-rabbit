@@ -1,0 +1,44 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.example.integrationqueues.config.QueueProperties",
+      "name": "queue.config",
+      "type": "com.example.integrationqueues.config.QueueProperties"
+    },
+    {
+      "sourceType": "com.example.integrationqueues.config.ConnectionProperties",
+      "name": "spring.rabbitmq",
+      "type": "com.example.integrationqueues.config.ConnectionProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.example.integrationqueues.config.QueueProperties",
+      "name": "queue.config.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.example.integrationqueues.config.ConnectionProperties",
+      "name": "spring.rabbitmq.addresses",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.example.integrationqueues.config.ConnectionProperties",
+      "name": "spring.rabbitmq.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.example.integrationqueues.config.ConnectionProperties",
+      "defaultValue": "foo",
+      "name": "spring.rabbitmq.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.example.integrationqueues.config.ConnectionProperties",
+      "defaultValue": "\/",
+      "name": "spring.rabbitmq.virtual-host",
+      "type": "java.lang.String"
+    }
+  ]
+}

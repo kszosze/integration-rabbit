@@ -1,0 +1,10 @@
+---
+spring:
+  rabbitmq:
+    addresses: "localhost:5671"
+    username: "user"
+    password: "password"
+
+queue:
+  config:
+    name: "foo"
