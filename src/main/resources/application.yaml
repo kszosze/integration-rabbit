@@ -2,8 +2,8 @@
 spring:
   rabbitmq:
     addresses: "localhost:5671"
-    username: "user"
-    password: "password"
+    username: "guest"
+    password: "guest"
 
 queue:
   config:

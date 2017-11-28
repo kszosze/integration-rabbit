@@ -16,7 +16,7 @@ import org.testcontainers.containers.GenericContainer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = IntegrationQueuesApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-@ContextConfiguration(initializers = AbstractTestCore.Initializer.class)
+@ContextConfiguration(initializers = AbstractTestCore.Initializer.class, classes = TestConfig.class)
 public abstract class AbstractTestCore {
 
     private static final Logger log = LoggerFactory.getLogger(AbstractTestCore.class);
