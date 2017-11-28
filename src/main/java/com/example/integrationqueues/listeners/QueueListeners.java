@@ -23,7 +23,7 @@ public class QueueListeners {
     private QueueProperties queueProperties;
 
     @Autowired
-    public Queue myDurableQueue;
+    private Queue myDurableQueue;
 
     @Bean
     public SimpleMessageListenerContainer simpleMessageListenerContainer(ConnectionFactory connectionFactory) {
@@ -39,10 +39,9 @@ public class QueueListeners {
     public IntegrationFlow amqpInbound(ConnectionFactory connectionFactory) {
         return IntegrationFlows.from(Amqp.inboundAdapter(connectionFactory, queueProperties.getName()))
                 .transform(Transformers.objectToString())
-                .handle( m -> {
-                    log.info(m.getPayload().toString());
-                    System.out.println("Received the mesage "+ m.getPayload());
-                        }
+                .log()
+                .handle(m ->
+                    log.info(m.getPayload().toString())
                 ).get();
     }
 

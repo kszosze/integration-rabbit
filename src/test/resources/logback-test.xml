@@ -5,4 +5,6 @@
     <logger name="org.apache.http" level="WARN"/>
     <logger name="com.github.dockerjava" level="WARN"/>
     <logger name="org.zeroturnaround.exec" level="INFO"/>
+    <logger name="org.springframework.amqp.rabbit" level="INFO" />
+
 </configuration>

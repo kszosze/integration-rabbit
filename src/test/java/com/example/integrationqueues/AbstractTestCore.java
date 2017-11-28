@@ -27,13 +27,13 @@ public abstract class AbstractTestCore {
                     .withExposedPorts(5672)
                     .withLogConsumer(frame -> {
                         OutputFrame supFrame = (OutputFrame)frame;
-                        System.out.println("DOCKER LOG : " + supFrame.getUtf8String());
+                        log.debug("DOCKER LOG : {}", supFrame.getUtf8String());
                     });
 
    public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
         public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-            System.out.println("Rabbit Machine IP "+ rabbit.getContainerIpAddress()+", Rabbit Port "+ rabbit.getMappedPort(5672));
+            log.debug("Rabbit Machine IP {}, Rabbit Port ", rabbit.getContainerIpAddress(), rabbit.getMappedPort(5672));
             EnvironmentTestUtils.addEnvironment("testcontainers", configurableApplicationContext.getEnvironment(),
                     "spring.rabbitmq.addresses=" + rabbit.getContainerIpAddress() + ":" + rabbit.getMappedPort(5672));
         }
