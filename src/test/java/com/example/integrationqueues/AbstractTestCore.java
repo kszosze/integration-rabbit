@@ -1,6 +1,5 @@
 package com.example.integrationqueues;
 
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -13,6 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.output.OutputFrame;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = IntegrationQueuesApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -24,21 +24,18 @@ public abstract class AbstractTestCore {
     @ClassRule
     public static GenericContainer rabbit =
             new GenericContainer("rabbitmq:3.6.14")
-                    .withExposedPorts(4369, 5671, 5672, 25672)
-                    .withEnv("RABBITMQ_USER", "guest")
-                    .withEnv("RABBITMQ_PASSWORD", "guest");
-
-    @Before
-    public void setUp() {
-        rabbit.start();
-    }
+                    .withExposedPorts(5672)
+                    .withLogConsumer(frame -> {
+                        OutputFrame supFrame = (OutputFrame)frame;
+                        System.out.println("DOCKER LOG : " + supFrame.getUtf8String());
+                    });
 
    public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
         public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-            log.debug("Rabbit Machine IP {}, Rabbit Port {}", rabbit.getContainerIpAddress(), rabbit.getMappedPort(5671));
+            System.out.println("Rabbit Machine IP "+ rabbit.getContainerIpAddress()+", Rabbit Port "+ rabbit.getMappedPort(5672));
             EnvironmentTestUtils.addEnvironment("testcontainers", configurableApplicationContext.getEnvironment(),
-                    "spring.rabbitmq.addresses=" + rabbit.getContainerIpAddress() + ":" + rabbit.getMappedPort(5671));
+                    "spring.rabbitmq.addresses=" + rabbit.getContainerIpAddress() + ":" + rabbit.getMappedPort(5672));
         }
     }
 }

@@ -2,7 +2,6 @@ package com.example.integrationqueues;
 
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -32,9 +31,5 @@ public class TestConfig {
         return new RabbitAdmin(connection);
     }
 
-    @Bean
-    public Queue myDurableQueue() {
-        return new Queue("foo", true, false, false);
-    }
 
 }
