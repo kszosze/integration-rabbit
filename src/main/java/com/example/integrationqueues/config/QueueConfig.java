@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Configuration;
 public class QueueConfig {
 
     @Bean
-    private Queue worksQueue() {
+    Queue worksQueue() {
         return new Queue("foo", true, false, false);
     }
+
     @Bean
-    private Exchange worksExchange() {
+    Exchange worksExchange() {
         return ExchangeBuilder.topicExchange("foo.exchange")
                 .build();
     }
