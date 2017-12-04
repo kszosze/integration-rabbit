@@ -1,12 +1,10 @@
 package com.example.integrationqueues.listeners;
 
 import com.example.integrationqueues.config.QueueProperties;
-import com.example.integrationqueues.errorhandlers.ExceptionStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +13,6 @@ import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.amqp.Amqp;
 import org.springframework.integration.dsl.support.Transformers;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ErrorHandler;
 
 @Component
 public class QueueListeners {
@@ -49,9 +46,7 @@ public class QueueListeners {
 
     @Bean
     public IntegrationFlow amqpInbound(ConnectionFactory connectionFactory) {
-        return IntegrationFlows.from(Amqp.inboundAdapter(connectionFactory, queueProperties.getName()).errorHandler(error -> {
-            log.debug(error.getLocalizedMessage());
-        }))
+        return IntegrationFlows.from(Amqp.inboundAdapter(connectionFactory, queueProperties.getName()))
                 .transform(Transformers.objectToString())
                 .log()
                 .handle(m ->
