@@ -2,5 +2,6 @@ META-INF/spring-configuration-metadata.json
 com/example/integrationqueues/config/RabbitConfig.class
 com/example/integrationqueues/config/ConnectionProperties.class
 com/example/integrationqueues/config/QueueProperties.class
+com/example/integrationqueues/config/QueueConfig.class
 com/example/integrationqueues/IntegrationQueuesApplication.class
 com/example/integrationqueues/listeners/QueueListeners.class
